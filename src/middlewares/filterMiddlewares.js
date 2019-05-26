@@ -8,6 +8,7 @@ import {filter, loadPokemon} from '../api.js'
   
   export const pokemonFilterMiddleware = store => next => action => {
     if (action.type === filterRequest.toString()) {
+        console.log('in middle')
         filter(action.payload)
         .then(
             results => Promise.all(

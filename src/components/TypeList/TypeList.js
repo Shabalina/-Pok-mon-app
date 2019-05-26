@@ -10,47 +10,30 @@ import { loadRequest } from '../../actions/loadActions';
 
 class TypeList extends Component {
 
-    state={
+    /*state={
 
-        filterValue: 'none',
-        isFilter: false
-    }   
-    
+        filterValue: 'none'
+    }   */
 
-    handleChange = (event) => {
-        console.log(event.target.value)        
-        const { filterValue, isFilter} =  this.state  
-        console.log(filterValue, isFilter)
-        if (filterValue !== event.target.value) {
-            console.log('under if') 
+    constructor(props) {
+        super(props);
+        console.log("CONSTRUCT")
+        this.state={
+            filterValue: 'none'
+        }
+    }    
+
+    handleChange = (event) => {       
+        const {filterValue} = this.state
+        const {filterRequest, loadRequest} = this.props
+        console.log(event.target.value) 
+        if (event.target.value !== filterValue){
             this.setState({
                 filterValue: event.target.value
             })
-            event.target.value !== 'none' ?
-            this.applyFilter(event.target.value)
-            :
-            this.clearFilter();     
-        }
-    }
-
-    applyFilter = (type) => {
-        const {filterRequest} = this.props 
-        //console.log(filterValue)
-        filterRequest(type);
-        this.setState({
-            isFilter: true
-        })
-    }
-
-    clearFilter = () => {
-        console.log('clear filter')
-        const { isFilter } = this.state
-        if (isFilter) {
-            loadRequest();
-            this.setState({
-                isFilter: false,
-                filterValue: ''
-            })
+            event.target.value !== 'none' 
+            ? filterRequest(event.target.value)
+            : loadRequest();            
         }
     }
       
@@ -60,7 +43,7 @@ class TypeList extends Component {
             <MenuItem 
                 key={type}
                 value={type}
-                onClick={this.handleClick}
+                //onClick={this.handleClick}
                 >
                 {type}
             </MenuItem>
@@ -69,6 +52,7 @@ class TypeList extends Component {
 
     render(){
         const { types } =  this.props  
+        const {filterValue} = this.state
         console.log(types)
         return(
             <div className={styles.container}>
@@ -79,7 +63,7 @@ class TypeList extends Component {
                     id="types"
                     select                  
                     name="types"
-                    value={types}
+                    value={filterValue}
                     placeholder="Chose type"
                     onChange={this.handleChange} 
                     className={styles.textField}                  
@@ -94,7 +78,7 @@ class TypeList extends Component {
                           })
                         : null}    
                          <MenuItem key='none' value='none'>
-                              clear filter
+                              none
                         </MenuItem>               
                 </TextField>                     
             </div>
