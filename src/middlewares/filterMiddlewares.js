@@ -4,12 +4,18 @@ import {
     filterRequest,
   } from '../actions/filterActions';
 
-import {filter} from '../api.js'
+import {filter, loadPokemon} from '../api.js'
   
-  export const pokemonFilteredMiddleware = store => next => action => {
+  export const pokemonFilterMiddleware = store => next => action => {
     if (action.type === filterRequest.toString()) {
         filter(action.payload)
+        .then(
+            results => Promise.all(
+                results.map(result => loadPokemon(result.pokemon.url))
+                )
+            )
         .then(pokemons => {
+          console.log(pokemons)  
           store.dispatch(filterSuccess(pokemons));
         })
         .catch(error => {

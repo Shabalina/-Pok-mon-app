@@ -1,7 +1,22 @@
 
 export const loadURL = () => 
-    //console.log('here')  
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=200',{
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=20',{
+        method: 'GET',
+        mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(res => res.results);
+
+export const filter = typeName =>
+    fetch(`https://pokeapi.co/api/v2/type/${typeName}`,{
+          method: 'GET',
+          mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(res => res.pokemon)
+    
+export const loadTypes = () => 
+    fetch('https://pokeapi.co/api/v2/type/?limit=100',{
         method: 'GET',
         mode: 'cors'
         })
@@ -9,29 +24,14 @@ export const loadURL = () =>
             return response.json()
         })
         .then(res => res.results)
-    
 
-export const pokemon = url =>
+export const loadPokemon = url =>    
     fetch(url, {
         method: 'GET',
         mode: 'cors'
     })
     .then(response => response.json())
     .then(pokemon => pokemon)
-
-export const filter = typeID =>
-    fetch(`https://pokeapi.co/api/v2/type/${typeID}`,{
-      method: 'GET',
-      mode: 'cors'
-    })
-      .then(response => response.json())
-      .then(pokemon => pokemon.map(item => 
-          fetch(item.pokemon.url, {
-          method: 'GET',
-          mode: 'cors'
-        })
-          .then(response2 => response2.json())
-      ));
 
 export const search = query =>
   fetch(`http://api.tvmaze.com/search/shows?q=${query}`, {

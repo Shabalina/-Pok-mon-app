@@ -1,4 +1,4 @@
-import { handleActions } from 'redux-actions';
+/*import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 import {
   filterRequest,
@@ -32,7 +32,9 @@ const pokemons = handleActions(
   );
   
   export default combineReducers({
-    pokemons,
-    isLoading,
-    error,
+  //  pokemons,
+  //  isLoading,
+  //  error,
   });
+
+  */
