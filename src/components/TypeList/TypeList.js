@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { connect } from 'react-redux';
-import { filterRequest } from '../../actions/filterActions';
-import { loadRequest } from '../../actions/loadActions';
+import { filterRequest } from '../../modules/Load';
+import { loadRequest } from '../../modules/Load';
 
 class TypeList extends Component {
 
@@ -33,7 +33,7 @@ class TypeList extends Component {
             })
             event.target.value !== 'none' 
             ? filterRequest(event.target.value)
-            : loadRequest();            
+            : loadRequest('https://pokeapi.co/api/v2/pokemon/?limit=20');            
         }
     }
       

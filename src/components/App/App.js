@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TypeList from '../TypeList'
 import PokemonList from '../PokemonList'
 //import styles from './App.module.css';
 import { connect } from 'react-redux';
-import {loadTypes} from '../../api.js'
-import { loadRequest } from '../../actions/loadActions';
+import {loadTypes} from './api.js'
+import { loadRequest } from '../../modules/Load';
 
 
 class App extends Component {
@@ -13,8 +13,9 @@ class App extends Component {
     }
 
 componentDidMount() {    
+    console.log('app mount')
     const { loadRequest } = this.props;
-    loadRequest();
+    loadRequest('https://pokeapi.co/api/v2/pokemon/?limit=20');
     loadTypes()        
     .then(types => {
         return (
@@ -28,14 +29,42 @@ componentDidMount() {
     })  
 }
 
+handleScroll = (ev) => {
+    console.log("Scrolling!");
+    const { next, loadRequest } = this.props
+    let element = ev.target
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+        console.log('end')
+        console.log(next)
+        if (next){
+            loadRequest(next);
+            // do something at end of scroll
+        }
+    }
+      
+}
+
 render(){
     //const {pokemons, isLoading, error} = this.props
     const {typeList} = this.state
+    const outterStyle = {
+        width: '100%',
+        height: '90%',
+        overflowY: 'auto'
+      }
     return(
-        <div>
-            <TypeList types={typeList}/>
-            <PokemonList/>
-        </div>
+        <Fragment>
+            <TypeList 
+            types={typeList}
+            />
+            <div
+            style={outterStyle}
+            onScroll={this.handleScroll}
+            >
+                
+                <PokemonList/>
+            </div>
+        </Fragment>
     )}
 }
 
@@ -50,5 +79,9 @@ render(){
     loadRequest
   }
 
-export default connect(null, mapDispatchToProps)(App);
+  const mapStateToProps = state => ({
+    next: state.all.next,
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

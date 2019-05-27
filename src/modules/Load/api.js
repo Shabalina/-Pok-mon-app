@@ -1,11 +1,11 @@
 
-export const loadURL = () => 
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=20',{
+export const loadURL = (url) => 
+    fetch(url,{
         method: 'GET',
         mode: 'cors'
     })
     .then(response => response.json())
-    .then(res => res.results);
+    .then(res => res);
 
 export const filter = typeName =>
     fetch(`https://pokeapi.co/api/v2/type/${typeName}`,{
@@ -13,17 +13,8 @@ export const filter = typeName =>
           mode: 'cors'
     })
     .then(response => response.json())
-    .then(res => res.pokemon)
-    
-export const loadTypes = () => 
-    fetch('https://pokeapi.co/api/v2/type/?limit=100',{
-        method: 'GET',
-        mode: 'cors'
-        })
-        .then(response => {
-            return response.json()
-        })
-        .then(res => res.results)
+    .then(res => res.pokemon)  
+
 
 export const loadPokemon = url =>    
     fetch(url, {

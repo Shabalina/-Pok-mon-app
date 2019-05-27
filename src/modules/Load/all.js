@@ -4,21 +4,35 @@ import {
   loadRequest,
   loadSuccess,
   loadFailure,
-} from '../actions/loadActions';
-import {
   filterRequest,
   filterSuccess,
   filterFailure,
-} from '../actions/filterActions';
+} from './actions';
 
 const pokemons = handleActions(
     {
-      [loadRequest]: () => [],
+      [loadRequest]: (_state, action) => {
+        return action.payload 
+          ? _state
+          : []
+        
+      },
       [filterRequest]: () => [],
-      [loadSuccess]: (_state, action) => action.payload,
+      [loadSuccess]: (_state, action) => {
+      //  console.log(action.payload, action.payload.pokemons, _state)
+        return _state.concat(action.payload.pokemons)
+      },
       [filterSuccess]: (_state, action) => action.payload,
     },
     [], 
+  );
+
+  const next = handleActions(
+    {
+      [loadSuccess]: (_state, action) => action.payload.next,
+      [filterSuccess]: () => null
+    },
+    null
   );
   
   const isLoading = handleActions(
@@ -45,6 +59,7 @@ const pokemons = handleActions(
   
   export default combineReducers({
     pokemons,
+    next,
     isLoading,
     error,
   });

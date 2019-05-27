@@ -1,20 +1,24 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { pokemonLoadMiddleware } from './middlewares/loadMiddlewares';
-import { pokemonFilterMiddleware } from './middlewares/filterMiddlewares';
-import rootReducer from './reducers';
+//import { pokemonLoadMiddleware } from './middlewares/loadMiddlewares';
+//import { pokemonFilterMiddleware } from './middlewares/filterMiddlewares';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer, { rootSaga } from './modules';
 
-const getStore = () => {
+  const createAppStore = () => {
+    const sagaMiddleware = createSagaMiddleware();
+  
     const store = createStore(
       rootReducer,
       compose(
-        applyMiddleware(pokemonLoadMiddleware, pokemonFilterMiddleware),
+        applyMiddleware(sagaMiddleware),
         window.__REDUX_DEVTOOLS_EXTENSION__
           ? window.__REDUX_DEVTOOLS_EXTENSION__()
-          : noop => noop,
-      ),
+          : f => f
+      )
     );
   
+    sagaMiddleware.run(rootSaga);
     return store;
   };
   
-  export default getStore;
+  export default createAppStore;
