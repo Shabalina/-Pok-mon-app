@@ -22,8 +22,11 @@ function* pokemonFilterFlow(action){
   }
 }
 
-function* pokemonFlow(action) {    
-  const urlString = action.payload  
+function* pokemonFlow(action) { 
+  const urlString =   
+    action.payload
+    ? action.payload
+    : 'https://pokeapi.co/api/v2/pokemon/'  
   try {        
       const results = yield call(loadURL, urlString);      
       const pokemons = yield all(

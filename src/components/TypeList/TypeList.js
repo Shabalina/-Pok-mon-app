@@ -24,7 +24,8 @@ class TypeList extends Component {
             })
             event.target.value !== 'none' 
             ? filterRequest(event.target.value)
-            : loadRequest('https://pokeapi.co/api/v2/pokemon/?limit=20');            
+            : loadRequest(); 
+           // : loadRequest('https://pokeapi.co/api/v2/pokemon/?limit=20');            
         }
     }
       

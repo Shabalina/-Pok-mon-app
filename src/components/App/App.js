@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import TypeList from '../TypeList'
 import PokemonList from '../PokemonList'
-//import styles from './App.module.css';
+import styles from './App.module.css';
 import { connect } from 'react-redux';
 import {loadTypes} from './api.js'
 import { loadRequest } from '../../modules/Load';
@@ -41,18 +41,14 @@ handleScroll = (ev) => {
 
 render(){
     const {typeList} = this.state
-    const outterStyle = {
-        width: '100%',
-        height: '90%',
-        overflowY: 'auto'
-      }
+
     return(
         <Fragment>
             <TypeList 
                 types={typeList}
             />
-            <div
-                style={outterStyle}
+            <div 
+                className={styles.container}                
                 onScroll={this.handleScroll}
             >              
                 <PokemonList/>

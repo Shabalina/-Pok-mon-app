@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './Pokemon.module.css';
 import BaseStats from '../BaseStats';
 
-const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080']
+//const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080']
 
-class Pokemon extends Component {
+class Pokemon extends PureComponent {
 
     addPad(n, length) {
         var len = length - (''+n).length;
         return (len > 0 ? new Array(++len).join('0') : '') + n
     }
-
+    /*
     getRandomColor() {
       return colors[Math.floor(Math.random()*colors.length)]  
-    }
+    }*/
 
     toFeet (n) {
         var realFeet = (n*3.28);
@@ -58,11 +58,7 @@ class Pokemon extends Component {
                                         return (
                                             <div 
                                                 key={ind}
-                                                className={styles.typeBox}
-                                                style={{
-                                                    backgroundColor: `${
-                                                        this.getRandomColor()
-                                                    }`}}
+                                                className={styles.typeBox}                                                
                                             >
                                                 {type.type.name}
                                             </div>

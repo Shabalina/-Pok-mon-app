@@ -43,6 +43,7 @@ td:nth-child(2){
     position: absolute;
     top: 5%;
     right: 15%;
+    cursor: pointer;
   }
   
   .mainData{
@@ -70,5 +71,9 @@ td:nth-child(2){
 
   .typeBox{
     margin: 5%;
-    padding:5px
+    padding:5px;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    border: 2px solid orange;
+
   }
