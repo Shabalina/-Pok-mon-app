@@ -32,6 +32,7 @@ class EvolutionCard extends Component {
                         from.pokemons.map(pokemon => {
                             return(
                                 <MiniPokyCard
+                                    key={pokemon.id}
                                     id = {from.id}
                                     pokemon = {pokemon}                    
                                 />
@@ -55,6 +56,7 @@ class EvolutionCard extends Component {
                         to.pokemons.map(pokemon => {
                             return(
                                 <MiniPokyCard
+                                    key={pokemon.id}
                                     id = {to.id}
                                     pokemon = {pokemon}                    
                                 />

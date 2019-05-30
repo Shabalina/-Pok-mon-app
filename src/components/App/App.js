@@ -45,7 +45,6 @@ handleScroll = (ev) => {
 }
 
 render(){
-    //const {pokemons, isLoading, error} = this.props
     const {typeList} = this.state
     const outterStyle = {
         width: '100%',
@@ -67,14 +66,6 @@ render(){
         </Fragment>
     )}
 }
-
-/*const mapStateToProps = state => ({
-    pokemons: state.all.pokemons,
-    isLoading: state.all.isLoading,
-    error: state.all.error,
-  })*/
-  
-  
   const mapDispatchToProps = {
     loadRequest
   }

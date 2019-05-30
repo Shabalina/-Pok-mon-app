@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './Pokemon.module.css';
 import {takeData} from './api.js';
 import EvolutionCard from '../EvolutionCard';
+import BaseStats from '../BaseStats';
 
 
 class Pokemon extends Component {
@@ -94,14 +95,20 @@ class Pokemon extends Component {
     
     findDesc(chainObj){
         const {pokemon} = this.props         
-        if (chainObj.species.name === pokemon.species.name){           
-            if (chainObj.evolves_to.length > 0) {
-                return chainObj.evolves_to[0].species.url
-            } else {
-                return null
-            }
+        console.log(chainObj)
+        console.log(pokemon.species.name)
+        if (chainObj.species.name === pokemon.species.name){  
+            return(
+            chainObj.evolves_to[0] 
+            ? chainObj.evolves_to[0].species.url
+            : null   
+            )                     
         } else {
-            return this.findDesc (chainObj.evolves_to[0])
+            return (
+            chainObj.evolves_to[0] 
+            ? this.findDesc (chainObj.evolves_to[0])
+            : null
+            )
         }
     }
         
@@ -121,22 +128,83 @@ class Pokemon extends Component {
                 from={from}
             />
         )}
+
+    addPad(n, length) {
+        var len = length - (''+n).length;
+        return (len > 0 ? new Array(++len).join('0') : '') + n
+    }
     
 
     render(){
         const {pokemon} = this.props 
         const { showPopup, to, from } = this.state          
         return(
-            <div className={`${styles.container} t-preview`}>
-                <div>
-                    <p>{pokemon.name}</p>                    
-                    <img
-                        src={ pokemon.sprites.front_default? pokemon.sprites.front_default : null}
-                        alt={pokemon.name}
-                        onClick={this.handlePokemonClick}
-                    >
-                    </img>                   
-                                   
+        <div className={styles.container}>
+                <div className={styles.main}>
+                    <div className={styles.avatar}>
+                        <img
+                            className={styles.avatar_img}
+                            src={ pokemon.sprites.front_default 
+                                ? pokemon.sprites.front_default 
+                                : null}
+                            alt={pokemon.name}
+                            onClick={this.handlePokemonClick}
+                        >
+                        </img>
+                    </div>
+                    <div className={styles.mainData}>
+                        <h4 className={styles.title}>Pokédex data</h4> 
+                        <table> 
+                        <tbody>                                                 
+                            <tr>
+                                <td>National №</td>
+                                <td style={{fontWeight: 'bold'}}>{this.addPad(pokemon.id, 3)}</td>                            
+                            </tr>   
+                            <tr>
+                                <td>Species</td>
+                                <td>{pokemon.species.name}</td>                            
+                            </tr>  
+                            <tr>
+                                <td>Height</td>
+                                <td>( {(parseInt(pokemon.height) /10)} m)</td>                            
+                            </tr> 
+                            <tr>
+                                <td>Weight</td>
+                                <td>
+                                    {Math.round((parseInt(pokemon.weight)/4.5359237) *10) /10}
+                                    lbs ({
+                                    Math.round((parseInt(pokemon.weight) /10) *10 ) / 10 
+                                    } kg)
+                                </td>                            
+                            </tr>  
+                            <tr>
+                                <td>Abilities</td>                            
+                                <td>
+                                    {pokemon.abilities.map((ability, ind)=>{
+                                    let add =
+                                    ability.is_hidden
+                                    ? '(hidden)'
+                                    : ''
+                                    return (
+                                        <p 
+                                            key={ind}
+                                            style={{color: 'blue'}}
+                                        >
+                                            {ability.ability.name} {add}
+                                        </p>
+                                        )}
+                                    )}
+                                </td>                            
+                            </tr>    
+                            </tbody>              
+                        </table>
+                    </div>         
+                </div>
+                <div className={styles.stat}>
+                    <h4 className={styles.title_stats}>Base stats</h4>
+                    <BaseStats
+                        stats={pokemon.stats}
+                    />
                 </div>
                 {showPopup && to && from ? 
                 this.renderEvolutionCard()

@@ -19,18 +19,18 @@ class SpeciesCard extends Component {
         const {id, pokemon} = this.props 
         console.log('in mini card', pokemon.name)
         return(
-            <div className={`${styles.container} t-preview`}>
-                <div>                                        
+            <div className={styles.container}>
+                <div className={styles.card}>                                        
                     <img
                         src={ pokemon.sprites.front_default? pokemon.sprites.front_default : null}
                         alt={pokemon.name}
                     >
                     </img>
-                    <p>#{id}</p>
-                    <p>{pokemon.name}</p>
+                    <p style={{color:'#777879'}}>#{id}</p>
+                    <p style={{color:'blue', fontWeight: 'bold'}}>{pokemon.name}</p>
                     {    
                         pokemon.types.length ? 
-                        <p>{this.findTypes()}</p>
+                        <p style={{color:'#cea502', fontWeight: 'bold'}}>{this.findTypes()}</p>
                         :
                         <p>Has no types</p>
                     }

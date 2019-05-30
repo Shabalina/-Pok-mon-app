@@ -26,7 +26,7 @@ class PokemonList extends Component {
         const {pokemons, isLoading, error} = this.props
         return(
             <div 
-            className={styles.searchPanel}
+            className={styles.container}
             >
                 {pokemons ? 
                     this.renderPokemons()                        
@@ -35,12 +35,18 @@ class PokemonList extends Component {
                 }
 
                 { isLoading ?
-                 <p>Pokemons are loading...</p>  
+                 <p className={styles.message}>
+                     Pokémons are loading...
+                </p>  
                  :
                  null
                 }
                 { error ?
-                <p>Error is happend</p>
+                <p 
+                    style={{color: 'red'}}
+                    className={styles.message}
+                    >
+                    Error is happend {error.text}</p>
                 : null
                 }                   
                                   

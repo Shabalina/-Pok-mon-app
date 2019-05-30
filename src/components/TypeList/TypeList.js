@@ -8,16 +8,11 @@ import { connect } from 'react-redux';
 import { filterRequest } from '../../modules/Load';
 import { loadRequest } from '../../modules/Load';
 
-class TypeList extends Component {
-
-    /*state={
-
-        filterValue: 'none'
-    }   */
+class TypeList extends Component {    
 
     constructor(props) {
         super(props);
-        console.log("CONSTRUCT")
+    //    console.log("CONSTRUCT")
         this.state={
             filterValue: 'none'
         }

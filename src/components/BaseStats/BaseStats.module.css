@@ -1,0 +1,37 @@
+table{
+    width:100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #d3d4c9;    
+  }
+
+td{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+
+    padding: 2px 0;
+}
+
+td:nth-child(1) {
+    text-align: right;
+    color: #777879;
+    padding-right: 10px;
+  }
+
+td:nth-child(3){
+    text-align: left;
+  }
+
+
+.bar_container{
+    width: 100%;
+    background-color: white;
+  }
+
+.bar{
+    
+    height: 2px;
+    border-radius: 10px;
+    }

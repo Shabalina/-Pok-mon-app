@@ -2,7 +2,11 @@
 html,
 body,
 #root {
-  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
   overflow-Y: hidden
 }
 
@@ -23,7 +27,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: #4CD0FF;
   text-decoration-color: rgba(0, 210, 233, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  height: 80px;
+  background: #c4c4c4; 
+  border-radius: 6px;
 }
