@@ -1,12 +1,31 @@
+button{
 
+  background-color: white;
+  color: gray;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #e7e7e7
+}
 .popup {
     position: fixed;
-    width: 70%;
+    width: 60%;
     top: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(190, 223, 218, 1);
+    background-color:whitesmoke;
+    border: 1px solid #e7e7e7;
     z-index: 10;
   }
 
@@ -16,17 +35,27 @@
     flex-direction: row;
     left: 10%;
     right: 10%;
-    top: 25%;
-    bottom: 25%;
+    top: 15%;
+    bottom: 10%;
     margin: auto;
-    background: white;
+    background: whitesmoke;
   }
 
   .column{
      display: flex;
      flex-direction: column;
-     justify-content: center;
+     justify-content: flex-start;
      text-align: center;
      width: 100%; 
      overflow-y: auto;
+  }
+
+  .column_title{
+    position: absolute;
+    top: -5%;
+    width: 33%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darkred;
+    font-weight: bold;
   }

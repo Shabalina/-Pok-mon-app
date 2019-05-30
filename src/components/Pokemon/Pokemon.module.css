@@ -65,4 +65,10 @@ td:nth-child(2){
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
     margin: 5px;
+    
+  }
+
+  .typeBox{
+    margin: 5%;
+    padding:5px
   }

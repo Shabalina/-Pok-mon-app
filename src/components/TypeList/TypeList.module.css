@@ -1,38 +1,18 @@
     
-.previewList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }  
-  
-  .buttonWrapper {
-    padding-left: 10px;
-  }
-  
-  .button {
-    font-size: 18px;
-    border-radius: 4px;
-    border: 1px solid #666;
-    padding: 3px 20px;
-  }
-  
-  .input {
-    font-size: 16px;
-  }
+.title {
+  text-align: 'left';
+  padding-bottom: '20px';
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .grow {
-    text-align: 'left';
-    padding-bottom: '20px'
-  }
+.textField {    
+  padding-bottom: '20px'
+}
 
-  .textField {    
-    padding-bottom: '20px'
-  }
-
-  .container{
-    display: 'flex';
-    flex-wrap: 'wrap';
-    flex-direction: 'column';
-    justify-content: 'left';
-    width: '40%'
+.container{
+  margin: 10px 20px 25px;
+  padding: 5px;
+  width: 30%;
+  color: darkgreen;
+  font-weight: bold;
 }

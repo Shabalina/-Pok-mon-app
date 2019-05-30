@@ -13,7 +13,6 @@ class App extends Component {
     }
 
 componentDidMount() {    
-    console.log('app mount')
     const { loadRequest } = this.props;
     loadRequest('https://pokeapi.co/api/v2/pokemon/?limit=20');
     loadTypes()        
@@ -30,15 +29,11 @@ componentDidMount() {
 }
 
 handleScroll = (ev) => {
-    console.log("Scrolling!");
     const { next, loadRequest } = this.props
     let element = ev.target
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        console.log('end')
-        console.log(next)
         if (next){
             loadRequest(next);
-            // do something at end of scroll
         }
     }
       
@@ -54,13 +49,12 @@ render(){
     return(
         <Fragment>
             <TypeList 
-            types={typeList}
+                types={typeList}
             />
             <div
-            style={outterStyle}
-            onScroll={this.handleScroll}
-            >
-                
+                style={outterStyle}
+                onScroll={this.handleScroll}
+            >              
                 <PokemonList/>
             </div>
         </Fragment>

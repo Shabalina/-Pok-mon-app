@@ -10,13 +10,12 @@ import {
 import {loadURL, filter, loadPokemon} from './api.js'
 
 function* pokemonFilterFlow(action){
-  console.log('catch filter req')
   const type = action.payload  
   try {        
       const results = yield call(filter, type);      
       const pokemons = yield all(
         results.map(result => call (loadPokemon, result.pokemon.url))
-        )
+      )
       yield put(filterSuccess(pokemons))      
   } catch (error) {
       yield put(filterFailure(error));
@@ -24,13 +23,12 @@ function* pokemonFilterFlow(action){
 }
 
 function* pokemonFlow(action) {    
-  console.log('catch load req');
   const urlString = action.payload  
   try {        
       const results = yield call(loadURL, urlString);      
       const pokemons = yield all(
         results.results.map(result => call (loadPokemon, result.url))
-        )
+      )
       yield put(loadSuccess({next: results.next, pokemons: pokemons}))      
   } catch (error) {
       yield put(loadFailure(error));
@@ -45,12 +43,3 @@ export default function*() {
     yield fork (fetchPokemonFlowWatcher);
     yield takeLatest (filterRequest, pokemonFilterFlow);  
   }
-/*
-function* fetchFilterWatcher() {
-  yield takeLatest(filterRequest, pokemonFilterFlow);
-}
-
-export default function*() {
-    yield fork (fetchFilterWatcher);
-    yield takeLatest (loadRequest, pokemonFlow);  
-  }*/

@@ -19,7 +19,6 @@ const pokemons = handleActions(
       },
       [filterRequest]: () => [],
       [loadSuccess]: (_state, action) => {
-      //  console.log(action.payload, action.payload.pokemons, _state)
         return _state.concat(action.payload.pokemons)
       },
       [filterSuccess]: (_state, action) => action.payload,

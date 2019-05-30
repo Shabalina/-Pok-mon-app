@@ -10,18 +10,14 @@ import { loadRequest } from '../../modules/Load';
 
 class TypeList extends Component {    
 
-    constructor(props) {
-        super(props);
-    //    console.log("CONSTRUCT")
-        this.state={
-            filterValue: 'none'
+    
+    state={
+        filterValue: 'none'
         }
-    }    
 
     handleChange = (event) => {       
         const {filterValue} = this.state
         const {filterRequest, loadRequest} = this.props
-        console.log(event.target.value) 
         if (event.target.value !== filterValue){
             this.setState({
                 filterValue: event.target.value
@@ -38,7 +34,6 @@ class TypeList extends Component {
             <MenuItem 
                 key={type}
                 value={type}
-                //onClick={this.handleClick}
                 >
                 {type}
             </MenuItem>
@@ -48,10 +43,9 @@ class TypeList extends Component {
     render(){
         const { types } =  this.props  
         const {filterValue} = this.state
-        console.log(types)
         return(
             <div className={styles.container}>
-                <Typography className={styles.grow}>
+                <Typography className={styles.title}>
                     Filter pokemons by type
                 </Typography>
                 <TextField
@@ -59,12 +53,10 @@ class TypeList extends Component {
                     select                  
                     name="types"
                     value={filterValue}
-                    placeholder="Chose type"
-                    onChange={this.handleChange} 
-                    className={styles.textField}                  
+                    placeholder='Chose type'
+                    onChange={this.handleChange}                 
                 >
-                   {   types.length !== 0
-                        //? addressList.filter(this.addressFilter(address.from))
+                   {   types.length
                         ? types.map(type => {
                             return (
                             <MenuItem key={type} value={type}>

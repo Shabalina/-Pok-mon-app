@@ -10,60 +10,59 @@ import styles from './EvolutionCard.module.css';
 class EvolutionCard extends Component {
     
 
-    renderMiniCards = (pokemon, id) => {
-        
-            return(
-                <MiniPokyCard
-                        id={id}
-                        pokemon={pokemon}
-                />)}
+    renderMiniCards = (pokemon, id) => {        
+        return (
+            <MiniPokyCard
+                    id={id}
+                    pokemon={pokemon}
+            />
+            )}
 
     render(){
         const {clickedPoky, to,from, closePopup } = this.props
-        console.log('Evolut card')
         return(
-            <div className={styles.popup}>
-            <button onClick={closePopup}>close evolution card</button>
+            <div className={styles.popup}>            
+                <button onClick={closePopup}>X</button>
                 <div className={styles.popup_inner}>                
                     <div className={styles.column}>
-                        <p>Evolve from</p>
-                        {from !== 'none' ? 
-                        
-                        from.pokemons.map(pokemon => {
-                            return(
-                                <MiniPokyCard
-                                    key={pokemon.id}
-                                    id = {from.id}
-                                    pokemon = {pokemon}                    
-                                />
-                            )
-                        })
-                        :
-                        <p>Has no ancestor</p>
+                        <p className={styles.column_title}>Evolve from</p>
+                        {
+                            from !== 'none'                         
+                            ? from.pokemons.map(pokemon => {
+                                return(
+                                    <MiniPokyCard
+                                        key={pokemon.id}
+                                        id = {from.id}
+                                        pokemon = {pokemon}                    
+                                    />
+                                    )
+                                })
+                            :
+                            <p>Has no ancestor</p>
                         }
                     </div>
                     <div className={styles.column}>
-                        <p>Species</p>
+                        <p className={styles.column_title}>Species</p>
                         <MiniPokyCard
-                        id = {clickedPoky.id}
-                        pokemon = {clickedPoky.pokemon}                    
+                            id = {clickedPoky.id}
+                            pokemon = {clickedPoky.pokemon}                    
                         />
                     </div>
                     <div className={styles.column}>
-                        <p>Evolve to</p>
+                        <p className={styles.column_title}>Evolve to</p>
                         {                            
-                        to !== 'none' ?                         
-                        to.pokemons.map(pokemon => {
-                            return(
-                                <MiniPokyCard
-                                    key={pokemon.id}
-                                    id = {to.id}
-                                    pokemon = {pokemon}                    
-                                />
-                            )
-                        })
-                        :
-                        <p>Has no descendants</p>
+                            to !== 'none'                          
+                            ? to.pokemons.map(pokemon => {
+                                return(
+                                    <MiniPokyCard
+                                        key={pokemon.id}
+                                        id = {to.id}
+                                        pokemon = {pokemon}                    
+                                    />
+                                    )
+                                })
+                            :
+                            <p>Has no descendants</p>
                         }
                     </div>                    
                 </div>

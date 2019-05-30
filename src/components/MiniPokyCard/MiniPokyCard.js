@@ -17,7 +17,6 @@ class SpeciesCard extends Component {
     
     render(){
         const {id, pokemon} = this.props 
-        console.log('in mini card', pokemon.name)
         return(
             <div className={styles.container}>
                 <div className={styles.card}>                                        
@@ -33,10 +32,7 @@ class SpeciesCard extends Component {
                         <p style={{color:'#cea502', fontWeight: 'bold'}}>{this.findTypes()}</p>
                         :
                         <p>Has no types</p>
-                    }
-                    <p></p>
-                    
-                                 
+                    }            
                 </div>
             </div>
         )
